@@ -12,17 +12,17 @@ const app = express();
 //send permite el envio de respuesta sin tener que especificar headers ni tipos de datos
 //el primer argumento de use es el path
 //para analizar la req es necesario un pakete de terceros "body-parser"
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // con el static manejamos files sin que tengan que pasar por el enrutador de express
 //podemos comunicarnos con la folder public
 //cual solicitud de files (.css .png .*) que se realice express lo va a ir a buscar a la carpeta public
 app.use(express.static(path.join(__dirname, "/public")));
 
 const rootDir = require("./util/path");
-const adminRoutes = require("./routes/admin");
+const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
-app.use("/admin", adminRoutes);
+app.use("/admin", adminData.router);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
