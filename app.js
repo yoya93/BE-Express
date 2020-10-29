@@ -1,9 +1,22 @@
-const http = require('http');
+const http = require("http");
 
-const routes = require('./routes');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-console.log(routes.someText);
+//express es una funcion
+const app = express();
 
-const server = http.createServer(routes.handler);
+//Configuracion de los  middleware
+//next permite que el flujo del programa pase al siguiente middleware
+//send permite el envio de respuesta sin tener que especificar headers ni tipos de datos
+//el primer argumento de use es el path
+//para analizar la req es necesario un pakete de terceros "body-parser"
+app.use(bodyParser.urlencoded({ extended: false }));
 
-server.listen(3000);
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
+
+app.use(adminRoutes);
+app.use(shopRoutes);
+
+app.listen(4000);
