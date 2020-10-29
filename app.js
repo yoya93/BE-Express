@@ -1,7 +1,6 @@
 const http = require("http");
 
 const path = require("path"); //Con path puedo obtener la ruta donde estoy y de esta forma me sirva para todos los SO
-
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -15,6 +14,7 @@ const app = express();
 //para analizar la req es necesario un pakete de terceros "body-parser"
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const rootDir = require("./util/path");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
