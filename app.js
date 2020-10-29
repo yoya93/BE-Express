@@ -13,6 +13,10 @@ const app = express();
 //el primer argumento de use es el path
 //para analizar la req es necesario un pakete de terceros "body-parser"
 app.use(bodyParser.urlencoded({ extended: false }));
+// con el static manejamos files sin que tengan que pasar por el enrutador de express
+//podemos comunicarnos con la folder public
+//cual solicitud de files (.css .png .*) que se realice express lo va a ir a buscar a la carpeta public
+app.use(express.static(path.join(__dirname, "/public")));
 
 const rootDir = require("./util/path");
 const adminRoutes = require("./routes/admin");
