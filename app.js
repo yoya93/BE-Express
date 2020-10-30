@@ -7,8 +7,23 @@ const bodyParser = require("body-parser");
 //express es una funcion
 const app = express();
 
-// Config motores de plantillas html
-app.set("view engine", "pug"); //Indicamos que queremos compilar express con plantillas dinamicas con el motor pug
+// Config motores de plantillas html(Pug)
+//app.set("view engine", "pug"); //Indicamos que queremos compilar express con plantillas dinamicas con el motor pug
+//app.set("views", "views"); //Donde estan estas plantillas dinamicas
+
+// Config motores de plantillas html(handlebars)
+//hbs trabaja con {{}} solo recib valores simples (no array , no obj)
+//mas sencillo que pug en cuanto al html
+const expressHbs = require("express-handlebars");
+app.engine(
+  "hbs",
+  expressHbs({
+    layoutsDir: "views/layouts/",
+    defaultLayout: "main-layout",
+    extname: "hbs",
+  })
+);
+app.set("view engine", "hbs");
 app.set("views", "views"); //Donde estan estas plantillas dinamicas
 
 //Configuracion de los  middleware
