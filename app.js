@@ -14,16 +14,20 @@ const app = express();
 // Config motores de plantillas html(handlebars)
 //hbs trabaja con {{}} solo recib valores simples (no array , no obj)
 //mas sencillo que pug en cuanto al html
-const expressHbs = require("express-handlebars");
-app.engine(
-  "hbs",
-  expressHbs({
-    layoutsDir: "views/layouts/",
-    defaultLayout: "main-layout",
-    extname: "hbs",
-  })
-);
-app.set("view engine", "hbs");
+// const expressHbs = require("express-handlebars");
+// app.engine(
+//   "hbs",
+//   expressHbs({
+//     layoutsDir: "views/layouts/",
+//     defaultLayout: "main-layout",
+//     extname: "hbs",
+//   })
+// );
+// app.set("view engine", "hbs");
+// app.set("views", "views"); //Donde estan estas plantillas dinamicas
+
+// Config motores de plantillas html(EJS)
+app.set("view engine", "ejs"); //Indicamos que queremos compilar express con plantillas dinamicas con el motor ejs
 app.set("views", "views"); //Donde estan estas plantillas dinamicas
 
 //Configuracion de los  middleware
@@ -45,9 +49,9 @@ app.use("/admin", adminData.router);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-  res.status(404).render("404", { pageTitle: "Page not Found" });
-
-  res.status(404).sendFile(path.join(rootDir, "/views", "/404.html"));
+  res
+    .status(404)
+    .render("404", { pageTitle: "Page not Found", path: "/views" });
 });
 
 app.listen(4000);
