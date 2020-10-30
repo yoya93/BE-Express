@@ -45,13 +45,11 @@ const rootDir = require("./util/path");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
+const Controller404 = require("./controllers/error");
+
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
-app.use((req, res, next) => {
-  res
-    .status(404)
-    .render("404", { pageTitle: "Page not Found", path: "/views" });
-});
+app.use(Controller404.get404);
 
 app.listen(4000);
