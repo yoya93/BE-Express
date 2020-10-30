@@ -7,6 +7,10 @@ const bodyParser = require("body-parser");
 //express es una funcion
 const app = express();
 
+// Config motores de plantillas html
+app.set("view engine", "pug"); //Indicamos que queremos compilar express con plantillas dinamicas con el motor pug
+app.set("views", "views"); //Donde estan estas plantillas dinamicas
+
 //Configuracion de los  middleware
 //next permite que el flujo del programa pase al siguiente middleware
 //send permite el envio de respuesta sin tener que especificar headers ni tipos de datos
@@ -26,6 +30,8 @@ app.use("/admin", adminData.router);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
+  res.status(404).render("404", { pageTitle: "Page not Found" });
+
   res.status(404).sendFile(path.join(rootDir, "/views", "/404.html"));
 });
 
