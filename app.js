@@ -41,7 +41,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //cual solicitud de files (.css .png .*) que se realice express lo va a ir a buscar a la carpeta public
 app.use(express.static(path.join(__dirname, "/public")));
 
-const rootDir = require("./util/path");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
