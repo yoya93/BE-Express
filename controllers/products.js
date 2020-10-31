@@ -18,13 +18,16 @@ exports.postAddProducts = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  const products = Product.fetchAll();
-  res.render("shop", {
-    prods: products,
-    pageTitle: "shop",
-    path: "/",
-    hasProducts: products.length > 0,
-    activeShop: true,
-    productCSS: true,
+  Product.fetchAll((products) => {
+    //envio esta funcion y me aseguro de esta forma que
+    //el porgrama espere por el resultado  se lo ponga de parametro a la misma
+    res.render("shop", {
+      prods: products,
+      pageTitle: "shop",
+      path: "/",
+      hasProducts: products.length > 0,
+      activeShop: true,
+      productCSS: true,
+    });
   });
 };
