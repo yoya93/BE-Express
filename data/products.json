@@ -1,1 +1,9 @@
-[{"title":"jorje","imageUrl":"","description":"el animal","price":"33"}]
+[
+  {
+    "id": "764736",
+    "title": "jorje",
+    "imageUrl": "",
+    "description": "el animal",
+    "price": "33"
+  }
+]
