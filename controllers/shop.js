@@ -24,6 +24,12 @@ exports.getProduct = (req, res, next) => {
   // const products = getProducts();
 };
 
+exports.postCart = (req, res, next) => {
+  const proId = req.body.productId;
+  console.log(proId);
+  res.redirect("/");
+};
+
 exports.getIndex = (req, res, next) => {
   Product.fetchAll((products) => {
     res.render("shop/index", {
